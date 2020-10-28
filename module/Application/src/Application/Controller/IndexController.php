@@ -9,6 +9,7 @@
 
 namespace Application\Controller;
 
+use Application\Model\Cliente;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -16,6 +17,43 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
+        $clientes = $this->getServiceLocator()
+            ->get('Application\Model\ClienteTable')->findAll();
+        return new ViewModel([
+            'clientes' => $clientes
+        ]);
+    }
+
+    public function createAction()
+    {
+        if ($this->getRequest()->isPost()) {
+            $data = $this->params()->fromPost();
+            $cliente = new Cliente();
+            $cliente->exchangeArray($data);
+            $table = $this->getServiceLocator()
+                ->get('Application\Model\ClienteTable');
+            $table->insert($cliente);
+            return $this->redirect()->toUrl('/application/index/index');
+        }
+
         return new ViewModel();
+    }
+
+    public function editAction()
+    {
+        $table = $this->getServiceLocator()
+            ->get('Application\Model\ClienteTable');
+        if ($this->getRequest()->isPost()) {
+            $data = $this->params()->fromPost();
+            $cliente = new Cliente();
+            $cliente->exchangeArray($data);
+            $table->update($cliente);
+            return $this->redirect()->toUrl('/application/index/index');
+        }
+        $cliente = $table->find($this->params()->fromRoute('id'));
+
+        return new ViewModel([
+            'cliente' => $cliente
+        ]);
     }
 }

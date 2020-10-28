@@ -1,0 +1,34 @@
+<form action="/application/index/edit/<?php echo $this->cliente->getId(); ?>" method="POST">
+    <input type="hidden" name="id" value="<?php echo $this->cliente->getId(); ?>" />
+    <label for="">Nome</label>
+    <input type="text" name="nome" value="<?php echo $this->cliente->getNome(); ?>">
+    <br>
+    <label for="">Cep</label>
+    <input type="text" name="cep" value="<?php echo $this->cliente->getCep(); ?>">
+    <br>
+    <label for="">Endereço</label>
+    <input type="text" name="endereco" value="<?php echo $this->cliente->getEndereco(); ?>">
+    <br>
+    <label for="">Numero</label>
+    <input type="text" name="numero" value="<?php echo $this->cliente->getNumero(); ?>">
+    <br>
+    <label for="">Complemento</label>
+    <input type="text" name="complemento" value="<?php echo $this->cliente->getComplemento(); ?>">
+    <br>
+    <label for="">Cidade</label>
+    <input type="text" name="cidade" value="<?php echo $this->cliente->getCidade(); ?>">
+    <br>
+    <label for="">Bairro</label>
+    <input type="text" name="bairro" value="<?php echo $this->cliente->getBairro(); ?>">
+    <br>
+    <label for="">Estado</label>
+    <input type="text" name="estado" value="<?php echo $this->cliente->getEstado(); ?>">
+    <br>
+    <label for="">Telefone</label>
+    <input type="text" name="telefone" value="<?php echo $this->cliente->getTelefone(); ?>">
+    <br>
+    <label for="">Email</label>
+    <input type="text" name="email" value="<?php echo $this->cliente->getEmail(); ?>">
+    <br>
+    <button type="submit" class="btn btn-success">Enviar</button>
+</form>
