@@ -14,31 +14,39 @@ if ($this->error) {
     <thead>
     <tr>
         <th>ID</th>
-        <th>Nome</th>
+        <th>Título</th>
+        <th>Descrição</th>
+        <th>Categoria</th>
+        <th>Cadastro</th>
+        <th>Ativo</th>
         <th>Ação</th>
     </tr>
     </thead>
     <tbody>
     <?php
     /**
-     * @var $entity \Categoria\Entity\Category
+     * @var $entity \Post\Entity\Post
      */
     ?>
-    <?php //if ($this->data): ?>
-        <?php //foreach ($this->data as $entity): ?>
+    <?php if ($this->data): ?>
+        <?php foreach ($this->data as $entity): ?>
             <tr>
-                <td><?php //echo $entity->getId(); ?></td>
-                <td><?php //echo $entity->getNome(); ?></td>
+                <td><?php echo $entity->getId(); ?></td>
+                <td><?php echo $entity->getTitulo(); ?></td>
+                <td><?php echo $entity->getDescricao(); ?></td>
+                <td><?php echo $entity->getCategory()->getNome(); ?></td>
+                <td><?php echo $entity->getCadastro()->format('d/m/Y'); ?></td>
+                <td><?php echo ($entity->getAtivo()) ? 'Sim' : 'Não'; ?></td>
                 <td>
-                    <a href="<?php //echo $this->url('post/default', array('controller' => 'post', 'action' => 'editar', 'id' => $entity->getId())); ?>"
+                    <a href="<?php echo $this->url('post/default', array('controller' => 'post', 'action' => 'editar', 'id' => $entity->getId())); ?>"
                        class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i></a>
-                    <a href="<?php //echo $this->url('post/default', array('controller' => 'post', 'action' => 'excluir', 'id' => $entity->getId())); ?>"
+                    <a href="<?php echo $this->url('post/default', array('controller' => 'post', 'action' => 'excluir', 'id' => $entity->getId())); ?>"
                        class="btn btn-danger"><i class="glyphicon glyphicon-remove-sign"></i></a>
                 </td>
             </tr>
-        <?php //endforeach; ?>
-    <?php //else: ?>
-<!--        <p class="alert alert-info">Nenhum registro encontrado!</p>-->
-    <?php //endif; ?>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p class="alert alert-info">Nenhum registro encontrado!</p>
+    <?php endif; ?>
     </tbody>
 </table>

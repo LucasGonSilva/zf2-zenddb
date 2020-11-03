@@ -2,13 +2,12 @@
 
 namespace Post\Entity;
 
-use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Post
  *
- * @ORM\Table(name="post", indexes={@ORM\Index(name="fk_post_categoria_idx", columns={"category"})})
+ * @ORM\Table(name="post", indexes={@ORM\Index(name="fk_post_category_idx", columns={"category"})})
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="Post\Entity\PostRepository")
@@ -27,7 +26,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="titulo", type="string", length=80, nullable=false)
+     * @ORM\Column(name="titulo", type="string", length=80, nullable=true)
      */
     private $titulo;
 
@@ -159,14 +158,13 @@ class Post
 
     /**
      * Set cadastro
-     *
+     * @ORM\PrePersist
      * @return Post
      * @throws \Exception
-     * @ORM\PrePersist
      */
     public function setCadastro()
     {
-        $this->cadastro = new DateTime('now');
+        $this->cadastro = new \DateTime();
 
         return $this;
     }
@@ -186,11 +184,12 @@ class Post
      *
      * @return Post
      * @throws \Exception
-     * @ORM\PostUpdate
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
      */
     public function setAlterado()
     {
-        $this->alterado = new DateTime('now');
+        $this->alterado = new \DateTime();
 
         return $this;
     }

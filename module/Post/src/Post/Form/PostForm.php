@@ -23,6 +23,7 @@ class PostForm extends Form implements ObjectManagerAwareInterface
 
         parent::__construct(null);
         $this->setAttribute('method', 'POST');
+        $this->setAttribute('class', 'form-horizontal');
 
 
         //Input titulo

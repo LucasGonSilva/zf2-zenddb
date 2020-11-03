@@ -31,10 +31,16 @@ abstract class AbstractService
             $hydrator->hydrate($data, $entity);
 
         } else {
+            //var_dump($data);
             $entity = new $this->entity($data);
         }
 
+        //var_dump($entity);die;
+
         $this->em->persist($entity);
+
+//        var_dump('aqui');die;
+
         $this->em->flush();
 
         return $entity;

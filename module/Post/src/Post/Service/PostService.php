@@ -18,6 +18,8 @@ class PostService extends AbstractService
         $data['category'] = $this->em->getRepository('Categoria\Entity\Category')
             ->find($data['category']);
 
+        //var_dump($data);die;
+
         return parent::save($data);
     }
 }

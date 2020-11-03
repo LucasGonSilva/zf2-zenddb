@@ -14,6 +14,7 @@
     "minimum-stability": "dev",
     "require-dev": {
         "doctrine/doctrine-orm-module" : "0.8.*@dev",
+        "doctrine/orm": "^2.6.2",
         "hounddog/doctrine-data-fixture-module": "dev-master"
     },
     "config": {
