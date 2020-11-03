@@ -1,0 +1,44 @@
+<a href="<?php echo $this->url('post/default', array('controller' => 'post', 'action' => 'inserir')); ?>"
+   class="btn btn-success">Cadastrar </a>
+<br>
+<?php
+if ($this->success) {
+    echo '<div class="alert alert-success">' . $this->success[0] . '<button type="button" class="close" data-dismiss="false">x</button></div>';
+}
+if ($this->error) {
+    echo '<div class="alert alert-danger">' . $this->error[0] . '<button type="button" class="close" data-dismiss="false">x</button></div>';
+}
+?>
+<table class="table table-bordered table-striped table-hover table-condensed">
+    <caption>Todos os Posts</caption>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Ação</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    /**
+     * @var $entity \Categoria\Entity\Category
+     */
+    ?>
+    <?php //if ($this->data): ?>
+        <?php //foreach ($this->data as $entity): ?>
+            <tr>
+                <td><?php //echo $entity->getId(); ?></td>
+                <td><?php //echo $entity->getNome(); ?></td>
+                <td>
+                    <a href="<?php //echo $this->url('post/default', array('controller' => 'post', 'action' => 'editar', 'id' => $entity->getId())); ?>"
+                       class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i></a>
+                    <a href="<?php //echo $this->url('post/default', array('controller' => 'post', 'action' => 'excluir', 'id' => $entity->getId())); ?>"
+                       class="btn btn-danger"><i class="glyphicon glyphicon-remove-sign"></i></a>
+                </td>
+            </tr>
+        <?php //endforeach; ?>
+    <?php //else: ?>
+<!--        <p class="alert alert-info">Nenhum registro encontrado!</p>-->
+    <?php //endif; ?>
+    </tbody>
+</table>
